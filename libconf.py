@@ -70,6 +70,10 @@ class AttrDict(collections.OrderedDict):
         except KeyError:
             raise AttributeError("Attribute %r not found" % attr)
 
+    def __setattr__(self, attr, value):
+        # Allow setting attributes via attribute access
+        self.__setitem__(attr, value)
+
 
 class ConfigParseError(RuntimeError):
     '''Exception class raised on errors reading the libconfig input'''
